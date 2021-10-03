@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
+const cors = require("cors");
 const connectDB = require("./config/db");
 
 // load env vars
@@ -13,7 +13,8 @@ connectDB();
 const jobs = require("./routes/jobs");
 
 const app = express();
-app.use("/graphql",  jobs);
+app.use(cors());
+app.use("/graphql", jobs);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT);
